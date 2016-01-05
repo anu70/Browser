@@ -54,24 +54,20 @@ public class MainActivity extends ActionBarActivity {
             webView.getSettings().setJavaScriptEnabled(true);
             final Activity activity = this;
 
-            webView.setWebViewClient(new WebViewClient() {
+           webView.setWebViewClient(new WebViewClient() {
                 public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
                     Toast.makeText(activity, description, Toast.LENGTH_SHORT).show();
                 }
             });
+
+
+
            if(Patterns.WEB_URL.matcher(et).matches()){
                webView.loadUrl(et);
            }
             else{
-               Intent intent=new Intent(Intent.ACTION_WEB_SEARCH);
-               intent.putExtra(SearchManager.QUERY,et);
-               startActivity(intent);
+           webView.loadUrl("https://www.google.com/search?q="+et);
            }
-
-
-
-
-
         }
         else{
             Toast.makeText(getApplicationContext(),"Please check your internet connection",Toast.LENGTH_LONG).show();
